@@ -1,11 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
-import axios from 'axios';
 import { CrowfundingBox } from 'components/CrowfundingBox';
-import { Project } from 'components/Project';
 import { Section } from 'layouts/Section';
 import { useEffect, useState } from 'react';
-import { IProject, ProjectService } from 'services/ProjectsService';
 import { useContractRead } from 'wagmi';
 
 import { crowdfundABI } from 'abi/crowdfundABI';
@@ -23,7 +20,7 @@ export const Crowfundings = () => {
 
   useEffect(() => {
     if(!isLoading && crowfundings.length <= 0 && shouldLoad) {
-      const cwds = data.map((o: any) => ({
+      const cwds = (data as unknown as []).map((o: any) => ({
         tokenAddress: o[0],
         name: o[1],
         description: o[2],
@@ -35,7 +32,7 @@ export const Crowfundings = () => {
       setCrowfundings(cwds);
       setShouldLoad(false);
     }
-  }, [crowfundings, data]);
+  }, [crowfundings, data, isLoading, shouldLoad]);
 
   return (
     <Section id="projects" className='mx-auto mt-[150px] mb-[150px] text-center space-y-8 max-w-[1200px]'>

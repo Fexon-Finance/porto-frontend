@@ -61,7 +61,11 @@ export const Wallet = () => {
   return (
     <Section id="wallet" className='mx-auto mt-[150px] text-center space-y-8 max-w-[1200px]'>
       <div className="flex justify-between">
-        <h1 className="font-bold text-5xl">Wallet</h1>
+        <div className="flex space-x-4 items-end">
+          <h1 className="font-bold text-5xl">Wallet</h1>
+          <a href="/wallet/history">History {'>'}</a>
+        </div>
+        
 
         <div className="flex space-x-8">
           <button onClick={() => setIsOpen(!isOpen)} className='flex items-center px-6 py-2 border-2 border-green-900 text-green-900 text-lg rounded-md hover:bg-gray-50'><img src="/wc-logo.png" alt="wallet connect logo" className='w-fit h-5 mr-2' /> WalletConnect</button>

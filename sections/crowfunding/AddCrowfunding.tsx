@@ -8,6 +8,7 @@ import { ProjectService } from 'services/ProjectsService';
 import { crowdfundABI } from 'abi/crowdfundABI';
 import { useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi';
 import { spawn } from 'child_process';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 export const AddCrowfunding = () => {
   const [shouldLoad, setShouldLoad] = useState(false);
@@ -38,8 +39,9 @@ export const AddCrowfunding = () => {
 
   return (
     <Section id="add-crowfunding" className='mx-auto mt-[100px] mb-[200px] text-center space-y-8 max-w-[1200px] flex space-x-8'>
-      <div className="flex justify-between text-left w-1/3">
+      <div className="flex flex-col space-y-8 text-left w-1/3">
         <h1 className="font-bold text-5xl">Tell us about your goal</h1>
+        <ConnectButton />
       </div>
       
       <div className="grid grid-cols-1 gap-8 text-left w-full">

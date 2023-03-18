@@ -13,6 +13,7 @@ export const ProjectDetails = ({id}: any) => {
   const [shouldLoad, setShouldLoad] = useState(true);
   const [transactions, setTransactions] = useState<IBalance[]>([]);
   const [project, setProjects] = useState<IProject>();
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     function getUser() {
@@ -49,13 +50,15 @@ export const ProjectDetails = ({id}: any) => {
   const initTransaction = async (tokenId: string, symbol: string) => {
     const wallet = new WalletsService();
 
-    await wallet.initTransaction(u!.userId!, {
+    const response = await wallet.initTransaction(u!.userId!, {
       tokenAmount: amount,
       tokenId,
       accountId: u!.userId!,
       projectName: project?.name!,
       projectId: project?.id!
     });
+
+    setIsSuccess(!!response);
   };
 
   useEffect(() => {
@@ -111,11 +114,12 @@ export const ProjectDetails = ({id}: any) => {
 
             <button onClick={async () => await initTransaction(project?.tokenList[0].id!, project?.tokenList[0].symbol!)} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Support</button>
 
+            {isSuccess && (<span className='uppercase text-green-900 font-semibold'>Thank your for the investment</span>)}
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col space-y-4 w-full">
+      <div className="flex flex-col space-y-4 w-[800px]">
         <h3 className='text-lg font-semibold'>Current Holdings</h3>
 
         {transactions.map((token, index) => (

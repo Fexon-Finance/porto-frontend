@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { crowdfundABI } from 'abi/crowdfundABI';
 import { fundingABI } from 'abi/fundABI';
-import { Balance } from 'components/Balance';
 import { ethers } from 'ethers';
 import { User, useUser } from 'hooks/useUser';
 import { Section } from 'layouts/Section';
 import { useEffect, useState } from 'react';
-import { IBalance, WalletsService } from 'services/WalletsService';
+import { WalletsService } from 'services/WalletsService';
 import { useContractRead, useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi';
 
 export const CrowdfundingDetails = ({id}: any) => {
@@ -44,7 +44,7 @@ export const CrowdfundingDetails = ({id}: any) => {
     console.log('id', id);
 
     if(id && data && shouldLoad && !isLoading) {
-      const cwds = data.map((o: any) => ({
+      const cwds = (data as unknown as []).map((o: any) => ({
         tokenAddress: o[0],
         name: o[1],
         description: o[2],
@@ -91,9 +91,12 @@ export const CrowdfundingDetails = ({id}: any) => {
   return (
     <Section id="crowdfunding-details" className='mx-auto mt-[150px] space-y-8 max-w-[1200px] text-left'>
       <div className="flex flex-col space-y-4">
+        
         <h1 className="font-bold text-5xl">{crowfunding?.name}</h1>
         <p className="text-lg text-gray-700">{crowfunding?.description}</p>
         <p>Already funded: {crowfunding.fundings}</p>
+
+        
       </div>
       
 
@@ -116,6 +119,7 @@ export const CrowdfundingDetails = ({id}: any) => {
         <div className="flex flex-col p-4 border-2 border-green-200 w-[400px] bg-green-50 space-y-4 rounded-md">
           <div className="flex flex-col space-y-4">
             <h4 className='text-lg font-medium'>In BIT</h4>
+            <ConnectButton />
 
             <div className="flex justify-between border-2 border-green-900 p-2 rounded-md items-center bg-white">
               <input value={bitAmount} onChange={e => setBitAmount(parseInt(e.target.value))} className='w-full' />

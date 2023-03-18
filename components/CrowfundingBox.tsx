@@ -6,10 +6,9 @@ export const CrowfundingBox = ({crowfunding}: any) => {
       <div className="space-y-2">
         <h2 className="text-3xl text-gray-900 font-bold">{crowfunding.name}</h2>
         <p className="text-lg text-gray-700">{crowfunding.description}</p>
-      </div>
-
-      <div className="">
-        <p>Already funded: {crowfunding.fundings}</p>
+  
+        <p className="text-sm">Already funded: <span className="font-bold"> {crowfunding.fundings} BIT</span></p>
+      
       </div>
           
       <div className="inline-block">

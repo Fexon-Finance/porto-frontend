@@ -3,7 +3,6 @@ import { TxHistoryRow } from 'components/TxHistoryRow';
 import { useUser } from 'hooks/useUser';
 import { Section } from 'layouts/Section';
 import { useState, useEffect } from 'react';
-import { Project, ProjectService } from 'services/ProjectsService';
 import { WalletsService } from 'services/WalletsService';
 
 export const TxHistory = () => {
@@ -31,7 +30,7 @@ export const TxHistory = () => {
         <h1 className="font-bold text-5xl">Transaction History</h1>
 
         <div className="">
-          <button onClick={() => {}} className="px-8 py-4 bg-green-900 text-white text-lg hover:bg-green-800">Deposit</button>
+          <a href="/wallet/deposit" className="px-6 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Deposit</a>
         </div>
       </div>
 

@@ -1,17 +1,15 @@
 import '../styles/globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
 import type { AppProps } from 'next/app';
 
-config.autoAddCss = false;
-
 import { publicProvider } from 'wagmi/providers/public';
-import { darkTheme, getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { connectorsForWallets, darkTheme, getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
-import { polygon, polygonMumbai, Chain } from 'wagmi/chains';
+import {
+  injectedWallet,
+  metaMaskWallet
+} from '@rainbow-me/rainbowkit/wallets';
 
 import '@rainbow-me/rainbowkit/styles.css';
-import { createContext, useContext, useReducer } from 'react';
 import { UserProvider } from 'context/UserContext';
 
 export const mantle = {
@@ -42,10 +40,20 @@ const { chains, provider } = configureChains(
   ]
 );
 
-const { connectors } = getDefaultWallets({
-  appName: 'ETHPorto',
-  chains
-});
+// const { connectors } = getDefaultWallets({
+//   appName: 'ETHPorto',
+//   chains
+// });
+
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Recommended',
+    wallets: [
+      injectedWallet({ chains }),
+      metaMaskWallet({ chains })
+    ],
+  },
+]);
 
 const wagmiClient = createClient({
   autoConnect: true,
@@ -57,7 +65,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider modalSize='compact' chains={chains} theme={darkTheme({
-        accentColor: '#805AD5',
+        accentColor: '#1C4532',
         accentColorForeground: 'white',
         borderRadius: 'small',
         fontStack: 'system',

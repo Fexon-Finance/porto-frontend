@@ -20,16 +20,14 @@ export interface IBalance {
 }
 
 export class WalletsService {
+  user: any;
   axios: Axios;
 
   constructor() {
-    const user = useUser();
+    this.user = useUser();
     
     this.axios = axios.create({
-      baseURL: 'http://localhost:8080/',
-      // headers: {
-      //   Authorization: user.token
-      // }
+      baseURL: 'http://localhost:8080/', 
     });
   }
 
@@ -46,7 +44,11 @@ export class WalletsService {
   }
 
   async initTransaction(id: string, data: ITransaction) {
-    const response = await this.axios.post(`/api/wallet/${id}/transactions`, data);
+    const response = await this.axios.post(`/api/wallet/${id}/transactions`, data, {
+      headers: {
+        Authorization: this.user.token
+      }
+    });
 
     return response.data;
   }

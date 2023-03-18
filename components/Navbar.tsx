@@ -35,7 +35,6 @@ export const Navbar = () => {
           <a href="/projects">Projects</a>
           <a href="/crowfundings">Crowfundings</a>
           {u?.token && (<a href="/wallet">Wallet</a>)}
-          {u?.token && (<a href="/tx-history">History</a>)}
   
           {/* <a href="/login" className="inline-block px-3 py-1 text-white rounded-md border-2 border-green-700 hover:bg-green-700">Login</a> */}
 

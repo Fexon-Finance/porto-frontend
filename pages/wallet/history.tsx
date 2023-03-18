@@ -3,7 +3,7 @@ import { TxHistory } from 'sections';
 
 const Page = () => {
   return (
-    <PageLayout name="Wallet">
+    <PageLayout name="Transaction History">
       <TxHistory />
     </PageLayout>
   );
