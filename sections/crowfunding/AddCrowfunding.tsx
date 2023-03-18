@@ -38,7 +38,7 @@ export const AddCrowfunding = () => {
   
 
   return (
-    <Section id="add-crowfunding" className='mx-auto mt-[100px] mb-[200px] text-center space-y-8 max-w-[1200px] flex space-x-8'>
+    <Section id="add-crowdfunding" className='mx-auto mt-[100px] mb-[200px] text-center space-y-8 max-w-[1200px] flex space-x-8'>
       <div className="flex flex-col space-y-8 text-left w-1/3">
         <h1 className="font-bold text-5xl">Tell us about your goal</h1>
         <ConnectButton />
@@ -49,12 +49,12 @@ export const AddCrowfunding = () => {
           <h3 className='text-lg font-semibold'>General</h3>
         
           <div className="flex flex-col space-y-1">
-            <label htmlFor="text" className="text-sm text-black">Crowfunding Name</label>
+            <label htmlFor="text" className="text-sm text-black">Crowdfunding Name</label>
             <input required value={name} onChange={e => setName(e.target.value)} className='border-2 border-green-900 p-2 rounded-md' />
           </div>
 
           <div className="flex flex-col space-y-1">
-            <label htmlFor="text" className="text-sm text-black">Crowfunding Description</label>
+            <label htmlFor="text" className="text-sm text-black">Crowdfunding Description</label>
             <textarea value={description} onChange={e => setDescription(e.target.value)} className='border-2 border-green-900 p-2 rounded-md' />
           </div>
         </div>

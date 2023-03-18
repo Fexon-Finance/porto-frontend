@@ -1,9 +1,9 @@
 import PageLayout from 'layouts/PageLayout';
-import { Crowfundings } from 'sections/crowfunding/Crowfunding';
+import { Crowfundings } from 'sections/crowfunding/Crowdfunding';
 
 const Page = () => {
   return (
-    <PageLayout name="Crowfunding">
+    <PageLayout name="Crowdfunding">
       <Crowfundings />
     </PageLayout>
   );

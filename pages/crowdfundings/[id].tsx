@@ -9,7 +9,7 @@ const Page = () => {
   console.log('id page', id);
 
   return (
-    <PageLayout name="Crowfunding Details">
+    <PageLayout name="Crowdfunding Details">
       <CrowdfundingDetails id={id} />
     </PageLayout>
   );

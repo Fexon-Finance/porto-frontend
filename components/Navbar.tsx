@@ -33,7 +33,7 @@ export const Navbar = () => {
 
         <div className="flex space-x-8 items-center justify-center">
           <a href="/projects">Projects</a>
-          <a href="/crowfundings">Crowfundings</a>
+          <a href="/crowdfundings">Crowdfundings</a>
           {u?.token && (<a href="/wallet">Wallet</a>)}
   
           {/* <a href="/login" className="inline-block px-3 py-1 text-white rounded-md border-2 border-green-700 hover:bg-green-700">Login</a> */}

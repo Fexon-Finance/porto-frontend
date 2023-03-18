@@ -37,9 +37,9 @@ export const Crowfundings = () => {
   return (
     <Section id="projects" className='mx-auto mt-[150px] mb-[150px] text-center space-y-8 max-w-[1200px]'>
       <div className="flex justify-between">
-        <h1 className="font-bold text-5xl">Crowfundings</h1>
+        <h1 className="font-bold text-5xl">Crowdfundings</h1>
 
-        <a href="/crowfundings/add">Create crowfunding {'>'}</a>
+        <a href="/crowdfundings/add">Create crowdfunding {'>'}</a>
       </div>
 
       <div className="grid grid-cols-2 gap-4">

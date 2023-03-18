@@ -4,7 +4,7 @@ import { AddCrowfunding } from 'sections/crowfunding/AddCrowfunding';
 
 const Page = () => {
   return (
-    <PageLayout name="Create Crowfunding">
+    <PageLayout name="Create Crowdfunding">
       <AddCrowfunding />
     </PageLayout>
   );

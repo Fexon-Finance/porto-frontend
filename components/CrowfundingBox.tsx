@@ -12,7 +12,7 @@ export const CrowfundingBox = ({crowfunding}: any) => {
       </div>
           
       <div className="inline-block">
-        <a href={`/crowfundings/${crowfunding.tokenAddress}`} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Support</a>
+        <a href={`/crowdfundings/${crowfunding.tokenAddress}`} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Support</a>
       </div>
           
     </div>
