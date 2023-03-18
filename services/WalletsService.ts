@@ -10,6 +10,15 @@ export interface ITransaction {
   projectId: string;
 }
 
+export interface IBalance {
+  id: string;
+  logo: string;
+  name: string;
+  symbol: string;
+  tokenAmount: number;
+  projectId: string;
+}
+
 export class WalletsService {
   axios: Axios;
 
@@ -18,9 +27,9 @@ export class WalletsService {
     
     this.axios = axios.create({
       baseURL: 'http://localhost:8080/',
-      headers: {
-        Authorization: user.token
-      }
+      // headers: {
+      //   Authorization: user.token
+      // }
     });
   }
 
@@ -30,7 +39,7 @@ export class WalletsService {
     return response.data;
   }
 
-  async getBalance(id: string) {
+  async getBalance(id: string): Promise<IBalance[]> {
     const response = await this.axios.get(`/api/wallet/${id}/balance`);
 
     return response.data;
@@ -38,6 +47,12 @@ export class WalletsService {
 
   async initTransaction(id: string, data: ITransaction) {
     const response = await this.axios.post(`/api/wallet/${id}/transactions`, data);
+
+    return response.data;
+  }
+
+  async fund(data: any) {
+    const response = await this.axios.post('/api/fund', data);
 
     return response.data;
   }

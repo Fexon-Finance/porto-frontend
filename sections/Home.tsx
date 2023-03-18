@@ -36,7 +36,7 @@ export const Home = () => {
         <p className="text-xl max-w-[70%] mx-auto">We allow supporting crypto public goods projects without using crypto</p>
 
         <div className="">
-          <button onClick={() => {}} className="px-8 py-4 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Invest</button>
+          <button onClick={() => {}} className="px-8 py-4 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Support</button>
         </div>
       </div>
       

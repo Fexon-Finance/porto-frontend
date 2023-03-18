@@ -1,17 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
-import { useUser } from 'hooks/useUser';
+import { Balance } from 'components/Balance';
+import { User, useUser } from 'hooks/useUser';
 import { Section } from 'layouts/Section';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Project, ProjectService } from 'services/ProjectsService';
-import { WalletsService } from 'services/WalletsService';
+import { IProject, ProjectService } from 'services/ProjectsService';
+import { IBalance, WalletsService } from 'services/WalletsService';
 
 export const ProjectDetails = ({id}: any) => {
   const [amount, setAmount] = useState(0);
-  const user = useUser();
+  const [u, setUser] = useState<User>();
+  const [shouldLoad, setShouldLoad] = useState(true);
+  const [transactions, setTransactions] = useState<IBalance[]>([]);
+  const [project, setProjects] = useState<IProject>();
 
-  // TODO: Fetch project data by ID
-  const [project, setProjects] = useState<Project>();
+  useEffect(() => {
+    function getUser() {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const user = useUser();
+
+      return user;
+    }
+
+    if(!u) {
+      const user = getUser();
+
+      setUser(user);
+    }
+  });
+
+  
 
   useEffect(() => {
     async function getProjects() {
@@ -31,14 +49,32 @@ export const ProjectDetails = ({id}: any) => {
   const initTransaction = async (tokenId: string, symbol: string) => {
     const wallet = new WalletsService();
 
-    await wallet.initTransaction(user.userId!, {
+    await wallet.initTransaction(u!.userId!, {
       tokenAmount: amount,
       tokenId,
-      accountId: user.userId!,
+      accountId: u!.userId!,
       projectName: project?.name!,
       projectId: project?.id!
     });
   };
+
+  useEffect(() => {
+    async function getTransactions() {
+      const walletsService = new WalletsService();
+
+      const response = await walletsService.getBalance(u?.userId!);
+      console.log('res', response);
+      const onlyGivenToken = response.filter(token => (token.symbol === project?.tokenList[0].symbol));
+      console.log({onlyGivenToken, project});
+
+      setTransactions(onlyGivenToken);
+    }
+
+    if(project && transactions.length <= 0 && shouldLoad && u?.userId) {
+      getTransactions();
+      setShouldLoad(false);
+    }
+  });
 
   return (
     <Section id="project-details" className='mx-auto mt-[150px] space-y-16 max-w-[1200px] text-left'>
@@ -57,25 +93,34 @@ export const ProjectDetails = ({id}: any) => {
       </div>
       
 
-      <div className="flex flex-col w-full">
-        <div className="flex flex-col p-4 border-2 border-green-900 w-[400px] bg-green-50 space-y-4">
+      <div className="flex flex-col space-y-4 w-full">
+        <h3 className='text-lg font-semibold'>Help</h3>
+      
+        <div className="flex flex-col p-4 border-2 border-green-200 w-[400px] bg-green-50 space-y-4 rounded-md">
           <div className="flex justify-between cursor-pointer">
             <h3 className='text-xl font-semibold'>{project?.tokenList[0].name} - {project?.tokenList[0].symbol}</h3>
           </div>
 
-
           <div className="flex flex-col space-y-4">
-            <h4 className='text-lg font-medium'>Invest</h4>
+            <h4 className='text-lg font-medium'>Support</h4>
 
             <div className="flex justify-between border-2 border-green-900 p-2 rounded-md items-center bg-white">
               <input value={amount} onChange={e => setAmount(parseInt(e.target.value))} type="email" id="email" className='w-full' />
               <span className='font-medium mx-4'>EURe</span>
             </div>
 
-            <button onClick={async () => await initTransaction(project?.tokenList[0].id!, project?.tokenList[0].symbol!)} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Invest</button>
+            <button onClick={async () => await initTransaction(project?.tokenList[0].id!, project?.tokenList[0].symbol!)} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Support</button>
 
           </div>
         </div>
+      </div>
+
+      <div className="flex flex-col space-y-4 w-full">
+        <h3 className='text-lg font-semibold'>Current Holdings</h3>
+
+        {transactions.map((token, index) => (
+          <Balance token={token} key={index} />
+        ))}
       </div>
     </Section>
   );

@@ -6,8 +6,9 @@ import { useUserContext } from 'context/UserContext';
 import { User, useUser } from 'hooks/useUser';
 import Image from 'next/image';
 import { WalletConnectService } from 'services/WalletConnectService';
-import { ITransaction, WalletsService } from 'services/WalletsService';
+import { IBalance, ITransaction, WalletsService } from 'services/WalletsService';
 import projects from 'pages/projects';
+import { Balance } from 'components/Balance';
 
 export const Wallet = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ export const Wallet = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [u, setUser] = useState<User>();
   const [shouldLoad, setShouldLoad] = useState(true);
-  const [transactions, setTransactions] = useState<ITransaction[]>([]);
+  const [transactions, setTransactions] = useState<IBalance[]>([]);
 
   useEffect(() => {
     function getUser() {
@@ -69,50 +70,9 @@ export const Wallet = () => {
       </div>
 
       <div className="flex flex-col space-y-4 w-full">
-        <div className="flex justify-between p-4 border-2 border-green-900">
-          <div className="flex items-center justify-center space-x-8">
-            <img src="/moleculedao.png" alt="moleculedao logo" className='w-fit h-[30px]' />
-            <h3 className='text-lg font-medium'>MoleculeDAO</h3>
-          </div>
-
-          <div className="flex space-x-16">
-            <div className="flex flex-col space-y-1">
-              <span className="text-xs text-gray-600 uppercase">Token Amount</span>
-              <p>10.00 ETH</p>
-            </div>
-
-            <div className="flex flex-col space-y-1">
-              <span className="text-xs text-gray-600 uppercase">Token Amount in USD</span>
-              <p>$100.00</p>
-            </div>
-
-            <div className="inline-block">
-              <button onClick={() => {}} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Invest</button>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-between p-4 border-2 border-green-900 rounded-md">
-          <div className="flex items-center justify-center space-x-8">
-            <img src="/moleculedao.png" alt="moleculedao logo" className='w-fit h-[30px]' />
-            <h3 className='text-lg font-medium'>MoleculeDAO</h3>
-          </div>
-
-          <div className="flex space-x-16">
-            <div className="flex flex-col space-y-1">
-              <span className="text-xs text-gray-600">Token Amount</span>
-              <p>10.00 ETH</p>
-            </div>
-
-            <div className="flex flex-col space-y-1">
-              <span className="text-xs text-gray-600">Token Amount in USD</span>
-              <p>$100.00</p>
-            </div>
-
-            <div className="inline-block">
-              <button onClick={() => {}} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Invest</button>
-            </div>
-          </div>
-        </div>
+        {transactions.map((token, index) => (
+          <Balance token={token} key={index} />
+        ))}
       </div>
 
       {isOpen && (

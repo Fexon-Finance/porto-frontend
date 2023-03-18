@@ -2,7 +2,7 @@
 
 export const Project = ({project}: any) => {
   return (
-    <div className="p-8 bg-green-50 flex flex-col space-y-8 text-left rounded-xl border-2 border-green-400">
+    <div className="p-8 bg-green-50 flex flex-col space-y-8 text-left rounded-xl border-2 border-green-200">
       <div className="flex justify-between">
         <img src={project.logo} alt="modulecule dao img" className="w-fit h-[40px]" />
 
@@ -25,7 +25,7 @@ export const Project = ({project}: any) => {
       </div>
           
       <div className="inline-block">
-        <a href={`/projects/${project.id}`} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md rounded-md">Invest</a>
+        <a href={`/projects/${project.id}`} className="px-4 py-2 bg-green-900 text-white text-lg hover:bg-green-800 rounded-md">Support</a>
       </div>
           
     </div>

@@ -33,11 +33,11 @@ export default function Document() {
           content="Make Chang3 | ETHPorto"
         />
 
-        <meta name="theme-color" content="#fff" />
+        <meta name="theme-color" content="#000" />
 
-        <link rel="icon" href="/favicon.png" type="image/svg+xml" />
-        <link rel="shortcut icon" href="favicon.png" />
-        <link rel="shortcut icon" href="favicon.png" />
+        <link rel="icon" href="/logo.png" type="image/svg+xml" />
+        <link rel="shortcut icon" href="logo.png" />
+        <link rel="shortcut icon" href="logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
 

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { TxHistoryRow } from 'components/TxHistoryRow';
 import { useUser } from 'hooks/useUser';
 import { Section } from 'layouts/Section';
 import { useState, useEffect } from 'react';
@@ -36,29 +37,25 @@ export const TxHistory = () => {
 
       <div className="flex flex-col space-y-4 w-full">
         {history.map((histor: any, index) => (
-          <div key={index} className="flex justify-between p-4 border-2 border-green-900">
-            <div className="flex items-center justify-center space-x-8">
-              <img src={histor.logo} alt="moleculedao logo" className='w-fit h-[30px]' />
-              <h3 className='text-lg font-medium'>{histor.name} - {histor.symbol}</h3>
-            </div>
+          <TxHistoryRow token={histor} key={index} />
+          // <div key={index} className="flex justify-between p-4 border-2 border-green-900">
+          //   <div className="flex items-center justify-center space-x-8">
+          //     <img src={histor.logo} alt="moleculedao logo" className='w-fit h-[30px]' />
+          //     <h3 className='text-lg font-medium'>{histor.name} - {histor.symbol}</h3>
+          //   </div>
 
-            <div className="flex space-x-16">
-              <div className="flex flex-col space-y-1">
-                <span className="text-xs text-gray-600 uppercase">Date</span>
-                <p className="text-green-900">{histor.date}</p>
-              </div>
+          //   <div className="flex space-x-16">
+          //     <div className="flex flex-col space-y-1">
+          //       <span className="text-xs text-gray-600 uppercase">Date</span>
+          //       <p className="text-green-900">{histor.date}</p>
+          //     </div>
 
-              <div className="flex flex-col space-y-1">
-                <span className="text-xs text-gray-600 uppercase">Token Amount</span>
-                <p className="text-green-900">{histor.tokenAmount} {histor.symbol}</p>
-              </div>
-
-              <div className="flex flex-col space-y-1">
-                <span className="text-xs text-gray-600 uppercase">Token Amount in USD</span>
-                <p className="text-green-900">{histor.price}</p>
-              </div>
-            </div>
-          </div>
+          //     <div className="flex flex-col space-y-1">
+          //       <span className="text-xs text-gray-600 uppercase">Token Amount</span>
+          //       <p className="text-green-900">{histor.tokenAmount} {histor.symbol}</p>
+          //     </div>
+          //   </div>
+          // </div>
         ))}
       </div>
     </Section>

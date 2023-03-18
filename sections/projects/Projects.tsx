@@ -30,7 +30,7 @@ export const Projects = () => {
       <div className="flex justify-between">
         <h1 className="font-bold text-5xl">Projects</h1>
 
-        <a href="/add-project">Submit project proposal {'>'}</a>
+        <a href="/projects/add">Submit project proposal {'>'}</a>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
